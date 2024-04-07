@@ -1,0 +1,25 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Exercicio1 {
+
+    public static void main(String[] args) {
+        System.out.println(obterDataFormatada());
+    }
+
+    public static String obterDataFormatada() {
+        SimpleDateFormat diaSemanaFormatado = new SimpleDateFormat("EEEE");
+        SimpleDateFormat diaFormatado = new SimpleDateFormat("dd");
+        SimpleDateFormat mesFormatado = new SimpleDateFormat("MMMM");
+        SimpleDateFormat anoFormatado = new SimpleDateFormat("y");
+        SimpleDateFormat horaFormatada = new SimpleDateFormat("HH");
+        SimpleDateFormat minutosFormatados = new SimpleDateFormat("mm");
+
+        Date dataAtual = new Date();
+
+        return "Hoje é " + diaSemanaFormatado.format(dataAtual) + ", dia " + diaFormatado.format(dataAtual) +
+                " de " + mesFormatado.format(dataAtual) + " de " + anoFormatado.format(dataAtual) +
+                " e agora são " + horaFormatada.format(dataAtual) + " horas e " +
+                minutosFormatados.format(dataAtual) + " minutos.";
+    }
+}
