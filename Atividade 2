@@ -5,25 +5,27 @@ import java.util.Scanner;
 public class Exercicio2 {
 
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Informe o dia:");
-        int dia = teclado.nextInt();
+        int dia = scanner.nextInt();
+        
         System.out.println("Informe o mês:");
-        int mes = teclado.nextInt();
+        int mes = scanner.nextInt();
+        
         System.out.println("Informe o ano:");
-        int ano = teclado.nextInt();
+        int ano = scanner.nextInt();
 
-        // Verifica se a data inserida é válida
-        if (isValidDate(dia, mes, ano)) {
-            contaTempo(dia, mes, ano);
+        if (isDataValida(dia, mes, ano)) {
+            mostrarTempoRestante(dia, mes, ano);
         } else {
-            System.out.println("Data inserida inválida.");
+            System.out.println("Data inserida é inválida.");
         }
 
-        teclado.close();
+        scanner.close();
     }
 
-    public static boolean isValidDate(int dia, int mes, int ano) {
+    public static boolean isDataValida(int dia, int mes, int ano) {
         try {
             LocalDate.of(ano, mes, dia);
             return true;
@@ -32,13 +34,16 @@ public class Exercicio2 {
         }
     }
 
-    public static void contaTempo(int dia, int mes, int ano) {
+    public static void mostrarTempoRestante(int dia, int mes, int ano) {
         LocalDate hoje = LocalDate.now();
-        LocalDate vira = LocalDate.of(ano, mes, dia);
-        Period periodo = Period.between(hoje, vira);
+        LocalDate dataInserida = LocalDate.of(ano, mes, dia);
+        Period periodo = Period.between(hoje, dataInserida);
+
         int dias = periodo.getDays();
         int meses = periodo.getMonths();
         int anos = periodo.getYears();
-        System.out.println("Faltam " + anos + " ano(s), " + meses + " mes(es) e " + dias + " dia(s) para essa data em " + ano + ".");
+
+        System.out.println("Faltam " + anos + " ano(s), " + meses + " mês(es) e " + dias + " dia(s) para essa data em " + ano + ".");
     }
 }
+
