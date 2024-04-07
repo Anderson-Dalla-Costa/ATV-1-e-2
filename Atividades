@@ -1,0 +1,44 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
+
+public class Exercicio2 {
+
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Informe o dia:");
+        int dia = teclado.nextInt();
+        System.out.println("Informe o mês:");
+        int mes = teclado.nextInt();
+        System.out.println("Informe o ano:");
+        int ano = teclado.nextInt();
+
+        // Verifica se a data inserida é válida
+        if (isValidDate(dia, mes, ano)) {
+            contaTempo(dia, mes, ano);
+        } else {
+            System.out.println("Data inserida inválida.");
+        }
+
+        teclado.close();
+    }
+
+    public static boolean isValidDate(int dia, int mes, int ano) {
+        try {
+            LocalDate.of(ano, mes, dia);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static void contaTempo(int dia, int mes, int ano) {
+        LocalDate hoje = LocalDate.now();
+        LocalDate vira = LocalDate.of(ano, mes, dia);
+        Period periodo = Period.between(hoje, vira);
+        int dias = periodo.getDays();
+        int meses = periodo.getMonths();
+        int anos = periodo.getYears();
+        System.out.println("Faltam " + anos + " ano(s), " + meses + " mes(es) e " + dias + " dia(s) para essa data em " + ano + ".");
+    }
+}
